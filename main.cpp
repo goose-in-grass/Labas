@@ -15,6 +15,8 @@ public:
         C = 5;
     };
 
+
+
     Triangle(double a, double b, double c) {
         if (((a + b > c) && (a + c > b) && (b + c > a))) {
             A = a;
@@ -29,15 +31,25 @@ public:
 
     }
 
-    Triangle(double a, double b) {
-        if (((a + b > a) && (a + a > b) && (b + a > a)))
+    Triangle(double a, double b)
+    {
+
+        if (2 * a > b)
         {
             A = C = a;
             B = b;
-        } else {
+        }
+        else if (2 * b > a)
+        {
+            B = C = b;
+            A = a;
+        }
+        else {
             cout << "uncorrected sides, will be used default sides" << endl;
-            A = C = 3;
-            B = 4;
+            Triangle();
+            C = A;
+
+
         }
 
     }
@@ -110,8 +122,11 @@ public:
 
 
 int main() {
-    Triangle abc(1,1);
+    Triangle abc(1.0, 1.0);
     abc.printInfo();
     std::cout << "Max side: " << abc.getMaxside() << std::endl;
+    cout<<endl;
+    Triangle rt(3,1);
+    rt.printInfo();
     return 0;
 }
